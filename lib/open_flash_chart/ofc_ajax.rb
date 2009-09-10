@@ -7,9 +7,12 @@ module OpenFlashChart
     end
 
     def js_open_flash_chart_object(div_name, width, height, base="/")
+      swf_file = File.join(RAILS_ROOT, "public", base, "open-flash-chart.swf")
+      mtime = File.mtime(swf_file).to_i
+
       <<-OUTPUT
       <script type="text/javascript">
-      swfobject.embedSWF("#{base}open-flash-chart.swf", "#{div_name}", "#{width}", "#{height}", "9.0.0");
+      swfobject.embedSWF("#{base}open-flash-chart.swf?#{mtime}", "#{div_name}", "#{width}", "#{height}", "9.0.0");
       </script>
       #{self.to_open_flash_chart_data}
       <div id="#{div_name}"></div>

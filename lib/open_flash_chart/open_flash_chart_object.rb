@@ -40,11 +40,13 @@ module OpenFlashChart
     def get_html(url, div_name, base, swf_file_name, width, height, protocol, obj_id)
       # NOTE: users should put this in the <head> section themselves:
       ## <script type="text/javascript" src="#{base}/javascripts/swfobject.js"></script>
+      swf_file = File.join("#{RAILS_ROOT}", "public", base, swf_file_name)
+      mtime = File.mtime(swf_file).to_i
 
       <<-HTML
       <div id="#{div_name}"></div>
       <script type="text/javascript">
-        swfobject.embedSWF("#{base}#{swf_file_name}", "#{div_name}", "#{width}", "#{height}", "9.0.0", "expressInstall.swf",{"data-file":"#{url}"});
+        swfobject.embedSWF("#{base}#{swf_file_name}?#{mtime}", "#{div_name}", "#{width}", "#{height}", "9.0.0", "expressInstall.swf",{"data-file":"#{url}"});
       </script>
       HTML
     end
