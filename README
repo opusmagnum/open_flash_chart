@@ -9,6 +9,8 @@ OpenFlashChart  Version 2.0.0  11/14/2008
 
 5) Add the following to the test_it_controller.rb in RAILS_ROOT/app/controllers:
 class TestItController < ApplicationController
+  include OpenFlashChart::Controller
+  include OpenFlashChart
   
   def index
     respond_to do |wants|
