@@ -40,7 +40,7 @@ module OpenFlashChart
     def get_html(url, div_name, base, swf_file_name, width, height, protocol, obj_id)
       # NOTE: users should put this in the <head> section themselves:
       ## <script type="text/javascript" src="#{base}/javascripts/swfobject.js"></script>
-      swf_file = File.join("#{RAILS_ROOT}", "public", base, swf_file_name)
+      swf_file = File.join("#{::Rails.root.to_s}", "public", base, swf_file_name)
       mtime = File.mtime(swf_file).to_i
 
       str = <<-HTML
